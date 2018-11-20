@@ -1,39 +1,73 @@
-# Inspiration
-1. 可以使用Transfer Learning把别人训练好的模型拿过来直接使用，然后结合自己的模型再去进行别的工作
-2. 如果能够有详细的数据分析则一定要做来验证自己的Idea
+###正定矩阵
+在线性代数里，正定矩阵 (positive definite matrix) 有时会简称为正定阵。 定义:$A$是$n$阶方阵，如果对任何非零向量$x$，都有$x^TAx>0$，其中$x^T$表示$x$的转置，就称$A$正定矩阵。
+性质: 
+1. 正定矩阵的行列式恒为正； 
+1. 实对称矩阵$A$正定当且仅当$A$与单位矩阵合同； 
+1. 两个正定矩阵的和是正定矩阵；
+1. 正实数与正定矩阵的乘积是正定矩阵。
 
-# Motivation
-现有的方法都是使用问题和文章全部做Co-Attention之类的操作，但是在训练的时候会面临着效率低的问题，毕竟并不是文章的所有部分都与问题是相关的，所以这里文章提出来先从文章中挑选出来一部分相关的语句，然后再去做QA任务。
-> Neural models for question answering (QA) over documents have achieved significant performance improvements. Although effective, these models do not scale to large corpora due to their complex modeling of interactions between the document and the question. Moreover, recent work has shown that such models are sensitive to adversarial inputs. In this paper, we study the minimal context required to answer the question, and find that most questions in existing datasets can be answered with a small set of  sentences. Inspired by this observation, we propose a simple sentence selector to select the minimal set of sentences to feed into the QA model.
-# Model
-根据Motivation，文章先分析了Motivation的正确性，然后模型Sentence Selector + QA Model来完成任务。
-## Corpus Analysis
+等价命题: 
+1. $A$是正定矩阵；
+1. $A$的一切顺序主子式均为正； 
+1. $A$的一切主子式均为正； 
+1. $A$的特征值均为正；
+1. 存在实可逆矩阵$C$，使$A=C^TC$；
+1. 存在秩为n的m×n实矩阵$B$，使$A=B^TB$；
+1. 存在主对角线元素全为正的实三角矩阵R，使$A=R^TR$
 
-> 表1说明了90%的问题只与一个句子相关，6%的与两个句子相关，2%的与3个以上句子相关。这样子来看，基本上是可以大概率断定假设是正确的。（PS：这儿的显然是人工判断的，那么肯定是一个小样本抽取，作者是随机选了50个例子来判断的，所以后面如果数据集过大自己也要做分析的话也可以引用这篇文章，并且采用类似的方法去做。）
+###半正定矩阵
+设$A$是实对称矩阵。如果对任意的实非零列向量$x$有$x^TAx≥0$，就称$A$为半正定矩阵。 对于半正定矩阵来说，相应的条件应改为所有的主子式非负。顺序主子式非负并不能推出矩阵是半正定的。
+性质: 
+1. 半正定矩阵的行列式是非负的； 
+1. 两个半正定矩阵的和是半正定的； 
+1. 非负实数与半正定矩阵的数乘矩阵是半正定的。
 
-# Model
+等价条件: 
+1. $A$是半正定的；
+1. $A$的所有主子式均为非负的； 
+1. $A$的特征值均为非负的； 
+1. 存在$n$阶实矩阵$C$，使$A=C'C$； 
+1. 存在秩为$r$的$r×n$实矩阵$B$，使$A=B'B$。
+
+###直观理解正定、半正定矩阵
+$x^TMx≥0$
+$x^Ty≥0 $  $(y=Mx)$
+$cos(θ)=\frac{x^Ty}{||x||∗||y||}≥0$
+$||x||$, $||y||$代表向量 $x$, $y$的长度，\theta是他们之间的夹角。正定、半正定矩阵的直觉代表一个向量经过它的变化后的向量与其本身的夹角小于等于90度。
+
+###正交矩阵
+在矩阵论中，正交矩阵（orthogonal matrix）是一个方块矩阵Q，其元素为实数，而且行与列皆为正交的单位向量，使得该矩阵的转置矩阵为其逆矩阵：$$\mathbf{Q}^T = \mathbf{Q}^{-1} \Leftrightarrow  \mathbf{Q}\mathbf{Q}^T=\mathbf{Q}^T\mathbf{Q} = \mathbf{I}  $$
+其中， $\mathbf{I}$为单位矩阵。正交矩阵的行列式值必定为$+1$或$-1$，因为：$1=det(I)=det(Q^{T}Q)=det(Q^{T})det(Q)=(det(Q))^{2} \Rightarrow |Q|=\pm 1$
+一些重要的性质：
+1. 作为一个线性映射（变换矩阵），正交矩阵保持距离不变，所以它是一个保距映射，具体例子为旋转与镜射。
+1. 行列式值为+1的正交矩阵，称为特殊正交矩阵，它是一个旋转矩阵。
+1. 行列式值为-1的正交矩阵，称为瑕旋转矩阵。瑕旋转是旋转加上镜射。镜射也是一种瑕旋转。
+
+###对称矩阵
+在线性代数中，对称矩阵是一个方形矩阵，其转置矩阵和自身相等。
+$$A = A^T \,,$$ 对称矩阵中的右上至左下方向元素以主对角线（左上至右下）为轴进行对称。若将其写作$ {\displaystyle A=(a_{ij})}$，则：${\displaystyle a_{ij}=a_{ji}\,\!} $。
+若满足$$A = -A^T \,,$$ 则$A$是反对称矩阵。
+
+性质：
+1. 对于任何方形矩阵 $X$， $X+X^{T}$、$X^{T}X$、$XX^{T}$都是对称矩阵。
+1. 如果A是对称矩阵，那么$XAX^T$也是对称矩阵。
+1. 一个矩阵同时为对称矩阵及斜对称矩阵当且仅当所有元素都是零。
+1. 每个实方形矩阵都可写作两个实对称矩阵的积，每个复方形矩阵都可写作两个复对称矩阵的积。
+
+###实对称矩阵
+每个元素都为实数的对称矩阵。
+实对称矩阵的一些良好的性质：
+1. $n$阶实对称矩阵$A$必可对角化，可用正交矩阵对角化。
+即：实对称矩阵$\mathbf{A}=\mathbf{Q}\mathbf{\Lambda}\mathbf{Q}^{-1}$，$\mathbf{\Lambda}$是对角矩阵且$Q$是正交矩阵。
+1. 实对称矩阵$A$的特征值都是实数，特征向量都是实向量。
+1. 实对称矩阵$A$的不同特征值所对应的特征向量是正交的。
+1. $k$重特征值必有$k$个线性无关的特征向量，或者说必有秩$r(λE-A)=n-k$。
 
 
-## Sentence Selector
-目的是为了给每个句子打分，最后归一化以后应该是一个0-1之间的分数。
-#### Sentence Encoding
-使用S-Reader来做Transfer Learning，来对问题和文章进行Embedding，得到$D \in \mathbb{R}^{h_d \times L_d}$以及$Q \in \mathbb{R}^{h_d \times L_q}$，其中$D$代表文章的Embedding， $Q$代表问题的Embedding，$h_d$是hidden size， $L_d$和$L_q$是对应的句子长度。
-计算question-aware sentence embedding：简单的Attention而已。这儿计算的应该是一个句子的embedding。
-$$\alpha_i = {\rm softmax} (D_i^T W_1 Q) \in \mathbb{R}^{L_q}$$
-$$D_i^q=\sum_i^{L_q} (\alpha_{i,j} Q_j) \in \mathbb{R}^{h_d}$$
-随后计算Question Encoding & Sentence Encoding
-$$D^{enc}=BiLSTM([D_i;D_i^q]) \in \mathbb{R}^{h \times L_d}$$
-$$Q^{enc}=BiLSTM(Q_j) \in \mathbb{R}^{h \times L_q}$$
-随后计算$D^{enc}$与$Q^{enc}$之间的分数呗，这儿设计的还挺复杂的：其中的$max$操作应该是按照维度来的。后面自己设计Fusion的时候也可以参考一下别人的设计，自己想确实比较简单了。
-$$\beta={\rm softmax}(w^T Q^{enc}) \in \mathbb{R}^{L_q}$$
-$$q^{\widetilde{enc}}=\sum_{j=1}^{L_q} (\beta_j Q_j^{enc}) \in \mathbb{R}^h$$
-$$\tilde{h}_i=(D_i^{enc}W_2 q^{\widetilde{enc}})\in \mathbb{R}^h$$
-$$\tilde{h}=max(\tilde{h}_1, \tilde{h}_2, ... , \tilde{h}_{L_d})$$
-$$score=W_3^T \tilde{h} \in \mathbb{R}^2$$
-score 代表了问题是否可以被某一个句子回答。
-后面，作者对每一个段落中的句子得分进行归一化，并且最后按照设置阈值的方式来选择句子，$Top K$。这里作者也说和别人不一样，别人是取前$K$，而它是设置阈值。
 
-## QA System
-这里作者在模型图中解释了，用的就是S-Reader中的组件，所以作者极力降低了这部分的存在感，后面干脆就不写了，只是在图片里面用文字说明了一下。好吧，我也不写了。
-# Experiments
-这儿的实验感觉不是那么重要。后面具体设置实验的时候再去参考实验设计。大致一想也知道作者会从和别的模型比较，设置阈值选$Top K$，验证自己选择的句子多少以及效果等方面去解释。
+
+
+
+
+
+
