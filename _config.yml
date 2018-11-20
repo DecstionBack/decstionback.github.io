@@ -62,8 +62,8 @@ kramdown:
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: e8f66d2339818d3cda42                            #生成的clientID
-  clientSecret: 0f7627a236d110917268608ad6bcb156ef89addd    #生成的clientSecret
+  clientID: 65e778cd55af4df64552                            #生成的clientID
+  clientSecret: fa2ab2005115b423fe29a19d3a72be3b368850ad    #生成的clientSecret
   repo: decstionback.github.io    #仓库名称
   owner: DecstionBack/    #github用户名
   admin: DecstionBack/
