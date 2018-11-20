@@ -65,8 +65,8 @@ gitalk:
   clientID: 65e778cd55af4df64552                            #生成的clientID
   clientSecret: fa2ab2005115b423fe29a19d3a72be3b368850ad    #生成的clientSecret
   repo: decstionback.github.io    #仓库名称
-  owner: DecstionBack/    #github用户名
-  admin: DecstionBack/
+  owner: DecstionBack    #github用户名
+  admin: DecstionBack
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 
