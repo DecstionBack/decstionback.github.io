@@ -1,10 +1,37 @@
+# 服务器端配置ss-libev
+
+安装出问题参考: [vultr登上谷歌学术](http://fpcsongazure.top/how-to-fuck-gfw-to-get-a-paper/)
+
+### 安装ss-libev
+
+```shell
+sudo apt-get install software-properties-common -y
+sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev -y
+sudo apt-get update
+sudo apt install shadowsocks-libev
+```
+
+### 配置ss-libev
+
+ip设置成 ["::","0.0.0.0"]是ipv4和ipv6都可以连接的版本.
+
+
+
+### 启动ss-libev
+
+```shell
+ss-server -c config.json
+```
+
 
 
 
 
 # ubuntu本地配置ss-libev
 
-VPS配置参考: [vultr登上谷歌学术](http://fpcsongazure.top/how-to-fuck-gfw-to-get-a-paper/)
+
+
+
 
 ### 安装本地ss-libev
 
