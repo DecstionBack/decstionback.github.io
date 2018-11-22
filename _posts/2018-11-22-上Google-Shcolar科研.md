@@ -82,7 +82,7 @@ sudo vim /etc/proxychains.conf
 
 
 
-将`socks4 127.0.0.1 9095`更改为`socks4 127.0.0.1 1080`即可.
+将`socks4 127.0.0.1 9095`更改为`socks5 127.0.0.1 1080`即可.
 
 
 
