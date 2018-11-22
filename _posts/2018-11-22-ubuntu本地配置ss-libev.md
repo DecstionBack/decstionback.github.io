@@ -1,4 +1,10 @@
+
+
+
+
 # ubuntu本地配置ss-libev
+
+VPS配置参考: [vultr登上谷歌学术](http://fpcsongazure.top/how-to-fuck-gfw-to-get-a-paper/)
 
 ### 安装本地ss-libev
 
