@@ -98,3 +98,12 @@ proxychains4 wget http://....
 
 
 
+### Git使用代理
+
+```shell
+git config --global http.proxy http://127.0.0.1:1080
+```
+
+再次使用`git clone`之类的命令，也会走代理。
+
+详情参见：[[Windows下git使用代理服务器的设置方法](http://blog.useasp.net/archive/2015/08/26/config-git-proxy-settings-on-windows.aspx)]
