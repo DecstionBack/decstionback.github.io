@@ -21,7 +21,7 @@
 
 The **Transformer** follows an encoder-decoder architecture, which encodes an input sequence $x=(x_1, x_2, ..., x_n)$ to a sequence of continuous representation $z=(z_1, z_2, ..., z_n)$  and generates an output sequence $(y_1, y_2, ..., y_m)$  of symbols one element at a time.
 
-![transformer](../img/transformer/transformer.png)
+![transformer](img/transformer/transformer.png)
 
 
 
