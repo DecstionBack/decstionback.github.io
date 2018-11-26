@@ -73,10 +73,14 @@ I have read a paper "[A Structured Self-attentive Sentence Embedding](https://ar
 In this paper, assuming the input dimension is [$B,L,D$] ($B$ is batch size, $L$ is sequence length and $D$ is word vector dimension), for each linear projection $D-->d$  we can get the output [$B,L,d$]. Performing this linear projection $h$ times we can get $h *[B,L,d]$. $d$ can be $d_k$ or $d_v$, $K$ and $V$ are the same and they have the same dimension.
 
 This paper then concatenates the output and once again projects to result in the final values as follows:
+
+
 $$
 MultiHead(Q,K,V)=Concat(head_1, head_2, ... heawd_h) W^O \\
 where head_i=Attention(QW_i^Q, KW_i^K, VW_i^V)
 $$
+
+
 **Dimension**:
 
 $W_i^Q \in \mathbb{R}^{d_{model} \times d_k}, W_i^K \in \mathbb{R}^{d_{model} \times d_k}, W_i^V \in \mathbb{R}^{d_{model} \times d_v}$  and  $W^O \in \mathbb{R}^{hd_v \times d_{model}}$
