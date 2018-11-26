@@ -75,15 +75,13 @@ In this paper, assuming the input dimension is [$B,L,D$] ($B$ is batch size, $L$
 This paper then concatenates the output and once again projects to result in the final values as follows:
 
 
-
 $$
 MultiHead(Q,K,V)=Concat(head_1, head_2, ... heawd_h) W^O \\
 where head_i=Attention(QW_i^Q, KW_i^K, VW_i^V)
 $$
 
 
-
-Dimension**:
+**Dimension**:
 
 $W_i^Q \in \mathbb{R}^{d_{model} \times d_k}, W_i^K \in \mathbb{R}^{d_{model} \times d_k}, W_i^V \in \mathbb{R}^{d_{model} \times d_v}$  and  $W^O \in \mathbb{R}^{hd_v \times d_{model}}$
 
@@ -125,7 +123,7 @@ See also: [【机器学习】关于CNN中1×1卷积核和Network in Network的�
 
 
 
-Assuming the input dimension is $d_{model}=512$ and the output dimension of the second feed-forward layer is also $d_{model}$. First, we can consider the input as a $1*512$ tensor, then we can adopt $d_{ff}$ number of $1$ filters with depth $512$. Each filter can get a $1$-dimension result. By performing this $d_{ff}$ times, we can get a $1*d_{ff}$ tensor.  Then we can adopt $d_{model}$ of $1$ fitlers with depth $d_{ff}$. After performing this $d_{model}$ times, we can get a $1*d_{model}$ tensor. So the feed-forward network can also be implemented by two convolutions with kernel size $1$.  `Conv1d` is adopted in `PyTorch` to implement this function, referring to code below.
+Assuming the input dimension is $d_{model}=512$ and the output dimension of the second feed-forward layer is also $d_{model}$. First, we can consider the input as a $1$-d tensor whose depth is $512$, then we can adopt $d_{ff}$ number of $1$ filters with depth $512$. Each filter can get a $1$-dimension result. By performing this $d_{ff}$ times, we can get a $1*d_{ff}$ tensor.  Then we can adopt $d_{model}$ of $1$-size filters with depth $d_{ff}$. After performing this $d_{model}$ times, we can get a $1$-d tensor with depth $d_{model}$. So the feed-forward network can also be implemented by two convolutions with kernel size $1$.  `Conv1d` is adopted in `PyTorch` to implement this function, referring to code below.
 
 
 
