@@ -146,13 +146,13 @@ PE(pos,2i+1)=cos(pos/10000^{2i/d_{model}})
 $$
 
 
-where $pos$ is the position and $i$ is the dimension. For each fixed dimension $i$, we can get a sinusoid function. We know that for a sin function: $f(t)=Asin(wt)$, the wavelength(or period $T$) equals $2\pi /w$. For the position function,we can get $T=2\pi / (1/10000^{2i/d_{model}})=2\pi * 10000^{2i/d_{model}}$. We can see that $2i/d_{model}\in [0,1]$. So $T\in [2\pi, 10000 \cdot 2\pi]$. More concisely, 
+where $pos$ is the position and $i$ is the dimension. For each fixed dimension $i$, we can get a sinusoid function. We know that for a sin function: $f(t)=Asin(wt)$, the wavelength(or period $T$) equals $2\pi /w$. For the position function,we can get $T=2\pi / (1/10000^{2i/d_{model}})=2\pi * 10000^{2i/d_{model}}$. We can see that $2i/d_{model}\in [0,1]$. So $T\in [2\pi, 10000 \cdot 2\pi]$. More concisely,  
 
 $T\in\{2\pi, 2*2\pi, 3*2\pi, ..., 9999* 2\pi, 10000*2\pi\}$.
 
 
 
-Here, $2*i​$ means even dimensions, and $2*i+1​$means odd dimensions, so $i\in\{0,1,2,...,d_{model}/2\}​$ and $2i/d_{model}\in [0,1]​$. Then the functions fo each dimension are as follows: sin, cos, sin, cos,...
+Here, $2*i$ means even dimensions, and $2*i+1$means odd dimensions, so $i\in\{0,1,2,...,d_{model}/2\}$ and $2i/d_{model}\in [0,1]$. Then the functions fo each dimension are as follows: sin, cos, sin, cos,...
 
 
 
