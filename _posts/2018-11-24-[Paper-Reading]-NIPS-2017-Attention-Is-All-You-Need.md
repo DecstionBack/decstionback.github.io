@@ -158,7 +158,7 @@ Here, $2i$  means even dimensions, and $2i+1$  means odd dimensions, so $i \in \
 
 **Then, why relative positions not absolute positions?**
 
-> We chose this function because we hypothesized it would allow the model to easily to attend by relative positions, since for any fixed offset $k​$, $PE_{pos}+k​$ can be represented as  a linear function of $PE_{pos}​$.
+> We chose this function because we hypothesized it would allow the model to easily to attend by relative positions, since for any fixed offset $k$, $PE_{pos}+k$ can be represented as  a linear function of $PE_{pos}$.
 
 Emmm..., it is intuitive and acceptable.
 
@@ -309,7 +309,7 @@ class Transformer(nn.Module):
 
 
 
-The class **Transformer **is composed of encoders and decoders. In the function `forward`, first encoder, then encoder, and return the predicted `seq_logit`. If we perform **Transformer** on a classification task, then the decoder can be removed and return the output of encoders( The last layer or all the layers).
+The class **Transformer** is composed of encoders and decoders. In the function `forward`, first encoder, then encoder, and return the predicted `seq_logit`. If we perform **Transformer** on a classification task, then the decoder can be removed and return the output of encoders( The last layer or all the layers).
 
 ### Encoder
 
