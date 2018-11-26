@@ -21,7 +21,7 @@
 
 The **Transformer** follows an encoder-decoder architecture, which encodes an input sequence $x=(x_1, x_2, ..., x_n)$ to a sequence of continuous representation $z=(z_1, z_2, ..., z_n)$  and generates an output sequence $(y_1, y_2, ..., y_m)$  of symbols one element at a time.
 
-![transformer](../img/transformer/transformer.png)
+![transformer](../img/transformer.png)
 
 
 
@@ -149,6 +149,34 @@ Here, $2*i$ means even dimensions, and $2*i+1$means odd dimensions, so $i\in\{0,
 > We chose this function because we hypothesized it would allow the model to easily to attend by relative positions, since for any fixed offset $k$, $PE_{pos}+k$ can be represented as  a linear function of $PE_{pos}​$.
 
 Emmm..., it is intuitive and acceptable.
+
+
+
+### Encoder & Decoder 
+
+The encoder represents a sequence as vector representation, and is connected to the downstream tasks. It can replace BiLSTM and be used as a sentence representation method.
+
+The decoder performs similarly to the decoder in seq2seq framework. An encoder contains two sub-layers, and a decoder consists of three sub-layers. Encoder: Multi-Head--> Feed-Forward, Decoder: Multi-Head-->Encoder output--> Feed-Forward. In the decoder, it adopts the outputs of the encoder to calculate the context vector and predict the output word at one step. The the output at step $i$ is fed into the decoder and predicts the next word $i+1$.
+
+So, the encoder can be used as a representation method, while the decoder is similar to the decoder of seq2seq framework.
+
+
+
+### Why Self Attention?
+
+Three reasons:
+
+1. The total computation complexity per layer;
+2. The amount of computation that can be parallelized;
+3. The path length between long-range dependencies in the network.
+
+
+
+
+
+
+
+
 
 
 
