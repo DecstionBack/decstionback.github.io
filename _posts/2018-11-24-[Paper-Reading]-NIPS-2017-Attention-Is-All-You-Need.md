@@ -152,7 +152,7 @@ $T\in\{2\pi, 2*2\pi, 3*2\pi, ..., 9999* 2\pi, 10000*2\pi\}$.
 
 
 
-Here, $2*i$ means even dimensions, and $2*i+1$ means odd dimensions, so $i\in\{0,1,2,...,d_{model}/2\}$   and $2i/d_{model}\in [0,1]$. Then the functions fo each dimension are as follows: sin, cos, sin, cos,...
+Here, $2*i$  means even dimensions, and $2*i+1$  means odd dimensions, so $i \in \{0,1,2,...,d_{model}/2\}$   and $2i/d_{model} \in [0,1]$. Then the functions for each dimension are as follows: sin, cos, sin, cos,...
 
 
 
