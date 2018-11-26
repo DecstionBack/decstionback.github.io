@@ -309,7 +309,7 @@ class Transformer(nn.Module):
 
 
 
-The class Transformer is composed of encoders and decoders. In the function `forward`, first encoder, then encoder, and return the predicted `seq_logit`. If we perform Transformer on a classification task, then the decoder can be removed and return the output of encoders( The last layer or all the layers).
+The class `Transformer` is composed of encoders and decoders. In the function `forward`, first encoder, then encoder, and return the predicted `seq_logit`. If we perform `Transformer` on a classification task, then the decoder can be removed and return the output of encoders( The last layer or all the layers).
 
 ### Encoder
 
