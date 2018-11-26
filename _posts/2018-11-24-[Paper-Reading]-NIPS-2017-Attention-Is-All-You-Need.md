@@ -138,11 +138,19 @@ Assuming the input dimension is $d_{model}=512$ and the output dimension of the 
 > Since our model contains no recurrence and no convolution, in order for the model to make use of the order of the sequence, we must inject some information about the relative or absolute position of the tokens in the sequence.
 
 The authors adopt relative position to model token sequences as follow:
+
+
 $$
 PE(pos,2i)=sin(pos/10000^{2i/d_{model}}) \\
 PE(pos,2i+1)=cos(pos/10000^{2i/d_{model}})
 $$
-where $pos$ is the position and $i$ is the dimension. For each fixed dimension $i$, we can get a sinusoid function. We know that for a sin function: $f(t)=Asin(wt)$, the wavelength(or period $T$) equals $2\pi /w$. For the position function,we can get $T=2\pi / (1/10000^{2i/d_{model}})=2\pi * 10000^{2i/d_{model}}$. We can see that $2i/d_{model}\in [0,1]$. So $T\in [2\pi, 10000 \cdot 2\pi]$. More concisely, $T\in\{2\pi, 2*2\pi, 3*2\pi, ..., 9999* 2\pi, 10000*2\pi\}$.
+
+
+where $pos$ is the position and $i$ is the dimension. For each fixed dimension $i$, we can get a sinusoid function. We know that for a sin function: $f(t)=Asin(wt)$, the wavelength(or period $T$) equals $2\pi /w$. For the position function,we can get $T=2\pi / (1/10000^{2i/d_{model}})=2\pi * 10000^{2i/d_{model}}$. We can see that $2i/d_{model}\in [0,1]$. So $T\in [2\pi, 10000 \cdot 2\pi]$. More concisely, 
+
+$T\in\{2\pi, 2*2\pi, 3*2\pi, ..., 9999* 2\pi, 10000*2\pi\}$.
+
+
 
 Here, $2*i$ means even dimensions, and $2*i+1$means odd dimensions, so $i\in\{0,1,2,...,d_{model}/2\}$ and $2i/d_{model}\in [0,1]$. Then the functions fo each dimension are as follows: sin, cos, sin, cos,...
 
@@ -539,9 +547,14 @@ class ScaledDotProductAttention(nn.Module):
 ```
 
 
+
+
+
 $$
 Attention(Q,K,V)={\rm softmax}(\frac{QK^T}{\sqrt{d_k}})V
 $$
+
+
 
 ### Position Embedding
 
@@ -567,13 +580,17 @@ def get_sinusoid_encoding_table(n_position, d_hid, padding_idx=None):
     return torch.FloatTensor(sinusoid_table)
 ```
 
+
+
 Position Embedding has been illustrated in details above. 
+
 
 
 $$
 PE(pos,2i)=sin(pos/10000^{2i/d_{model}}) \\
 PE(pos,2i+1)=cos(pos/10000^{2i/d_{model}})
 $$
+
 
 
 # Conclusion
