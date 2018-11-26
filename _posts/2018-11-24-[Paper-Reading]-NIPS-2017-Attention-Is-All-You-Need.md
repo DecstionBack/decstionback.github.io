@@ -75,13 +75,15 @@ In this paper, assuming the input dimension is [$B,L,D$] ($B$ is batch size, $L$
 This paper then concatenates the output and once again projects to result in the final values as follows:
 
 
+
 $$
 MultiHead(Q,K,V)=Concat(head_1, head_2, ... heawd_h) W^O \\
 where head_i=Attention(QW_i^Q, KW_i^K, VW_i^V)
 $$
 
 
-**Dimension**:
+
+Dimension**:
 
 $W_i^Q \in \mathbb{R}^{d_{model} \times d_k}, W_i^K \in \mathbb{R}^{d_{model} \times d_k}, W_i^V \in \mathbb{R}^{d_{model} \times d_v}$  and  $W^O \in \mathbb{R}^{hd_v \times d_{model}}$
 
