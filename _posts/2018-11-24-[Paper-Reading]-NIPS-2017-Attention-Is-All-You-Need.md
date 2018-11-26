@@ -21,7 +21,7 @@
 
 The **Transformer** follows an encoder-decoder architecture, which encodes an input sequence $x=(x_1, x_2, ..., x_n)$ to a sequence of continuous representation $z=(z_1, z_2, ..., z_n)$  and generates an output sequence $(y_1, y_2, ..., y_m)$  of symbols one element at a time.
 
-![trans](https://decstionback.github.io/img/transformer/trans.png)
+![trans](/img/transformer/trans.png)
 
 ### Encoder
 
@@ -62,7 +62,7 @@ Attention(Q,K,V)={\rm softmax} (\frac{QK^T}{\sqrt{d_k}})V
 $$
 In this formulation, $\sqrt{d_k}$ is the scaling factor. From the dot expression $QK^T=\sum_i^d Q_i K^T_i$ , we can see that if $d$ is large, the sum value can be very large and it will push the softmax function to regions where it has very small gradients (The authors use the word **suspect**). 
 
-![scaled](https://decstionback.github.io/img/transformer/scaled.png)
+![scaled](/img/transformer/scaled.png)
 
 ### Multi-Head Attention
 
@@ -97,7 +97,7 @@ Here, $d_k$ and $d_v$ can have different dimensions.
 
 This paper adopts $h=8$ heads, $d_{model}=512$, so $d_k=d_v=d_{model}/h=64$.
 
-![Multi-Head](https://decstionback.github.io/img/transformer/multihead.png)
+![Multi-Head](/img/transformer/multihead.png)
 
 
 
@@ -182,7 +182,7 @@ Three reasons:
 2. The amount of computation that can be parallelized;
 3. The path length between long-range dependencies in the network.
 
-![complexity](https://decstionback.github.io/img/transformer/complexity.png)
+![complexity](/img/transformer/complexity.png)
 
 **Complexity per Layer**
 
@@ -207,7 +207,7 @@ This means the maximum path length  between two words. In Recurrent, the path le
 
 **As side benefit, self-attention could yield more interpretable models. We inspect attention distributions from our models and present and discuss example. Not only do individual attention heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic and semantic structure of the sentences.**
 
-![example1](https://decstionback.github.io/img/transformer/example1.png)
+![example1](/img/transformer/example1.png)
 
 The attention in layer 5 of 6. From the picture, we can see that the word 'making' have strong connection with words 'more' and 'difficult', thus leading to the phrase structure 'making ... more difficult'. Each color means a head attention (totally 8). We can see that many attentions extract the relations between 'making' and 'more', between 'making' and 'difficult', so they will have stronger connections.
 
@@ -218,7 +218,7 @@ Assumption: $d=64, h=8, d_{model}=512, d_{model}=d*h$.
 
 In this picture, we should show the attention matrix respectively. For each head, it performs attention on the $d$ vectors, and will generate a $n*n$ attention matrix. We should show the $n*n$ attention matrix. For each attention, we show it in one color horizontally. The darker the color is, the bigger weight the attention has. When multiple attentions discover the relations between two words, they will have much stronger connections. 
 
-![example2](https://decstionback.github.io/img/transformer/example2.png)
+![example2](/img/transformer/example2.png)
 
 
 
@@ -228,7 +228,7 @@ In this picture, we should show the attention matrix respectively. For each head
 
 
 
-![example3](https://decstionback.github.io/img/transformer/example3.png)
+![example3](/img/transformer/example3.png)
 
 
 
