@@ -98,7 +98,7 @@ The input sequences are fed into the language model and will output vector repre
 
 If the inputs are single sentences, the model will be trained easily. What about other circumstances? Two inputs, or several choices? This paper gives an elegant solution.
 
-![gpt](../img/GPT/GPT.png)
+![gpt](/img/GPT/GPT.png)
 
 
 
