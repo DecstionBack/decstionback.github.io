@@ -56,7 +56,7 @@ $\Theta_x$: token representation; $\Theta_s$: softmax layer.
 
 
 
-For each token $t_k$, a $L$-layer biLM computes a set of $2L+1$ representations:
+For each token $t_k$, a $L$-layer biLM computes a set of $2L+1$ representations: 
 
 
 $$
