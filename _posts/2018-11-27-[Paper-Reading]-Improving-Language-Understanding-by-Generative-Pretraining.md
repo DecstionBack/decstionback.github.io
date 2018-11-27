@@ -30,17 +30,16 @@ Output: A language model trained on the corpora
 
 #### Traing Objective
 
-> Given an unsupervised corpus of tokens $\mathcal{U}={u_1, ..., u_k}$, we use a standard language modeling objective to maximize the following likelihood:
-> $$
-> L_1(\mathcal{U})=\sum_i \log P(u_i|u_{i-k}, ..., u_{i-1}; \Theta)
-> $$
->
-
-
+Given an unsupervised corpus of tokens $\mathcal{U}={u_1, ..., u_k}$, we use a standard language modeling objective to maximize the following likelihood:
+$$
+L_1(\mathcal{U})=\sum_i \log P(u_i|u_{i-k}, ..., u_{i-1}; \Theta)
+$$
 
 #### Training Methods
 
 In the experiments, we adopt a multi-layer **Transformer decoder** (suitable for single-directional models) for the language model. The training network is as follows:
+
+
 $$
 h_0=UW_e+W_p \\
 h_l={\rm transformer\_block(h_{l-1})}   \forall i \in [1,n] \\
@@ -63,10 +62,14 @@ After training the unsupervised model, we can save the model parameters except t
 During supervised fine-tuning process, we transfer the saved model to specific tasks. The parameters in transformer_block can be changed or fixed. 
 
 The inputs are passed through the pre-trained model to obtain the final transformer_block's activation $h_l^m$ ( $l$ is the block layer and $m$ is the token position), which is then fed into an added linear output layer with parameters $W_y$ to predict $y$:
+
+
 $$
 P(y|x^1, ..., x^m)={\rm softmax} (h_l^m W_y)
 $$
 During fine-tuning process, the objective is :
+
+
 $$
 L_2(\mathcal{C})=\sum_{(x.y)} \log P(y|x^1, ..., x^m)
 $$
@@ -76,12 +79,12 @@ In unsupervised pre-training, the objective is $L_1 (\mathcal{U})$, while in the
 
 
 
-> We additionally found that including language modeling as an auxiliary objective to the fine-tuning helped learning by (a) improving generalization of the supervised model, and (b) accelerating convergence. So the new objective in supervised fine-tuning is:
-> $$
-> L_3(\mathcal{C})=L_2(\mathcal{C}) + \lambda * L_1 (\mathcal{C})
-> $$
->
+We additionally found that including language modeling as an auxiliary objective to the fine-tuning helped learning by (a) improving generalization of the supervised model, and (b) accelerating convergence. So the new objective in supervised fine-tuning is:
 
+
+$$
+L_3(\mathcal{C})=L_2(\mathcal{C}) + \lambda * L_1 (\mathcal{C})
+$$
 
 
 They also add a delimiter tokens `Delim` in the embedding matrix and will be trained on the specific tasks.
