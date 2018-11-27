@@ -43,6 +43,8 @@ Two functions:
 ## Model Pre-training
 
 Like other language models, the authors pre-train ELMo using a deep biLSTM model. The objective is as follows:
+
+
 $$
 L=\sum_{k=1}^N (\log p(t_k|t_1, ..., t_{k-1}; \Theta_x, \overrightarrow{\Theta}_{LSTM}, \Theta_s)) + \log p(t_k|t_{k+1}, ..., t_N; \Theta_x, \overleftarrow{\Theta}_LSTM, \Theta_s)
 $$
@@ -55,9 +57,13 @@ $\Theta_x$: token representation; $\Theta_s$: softmax layer.
 
 
 For each token $t_k$, a $L$-layer biLM computes a set of $2L+1$ representations:
+
+
 $$
 R_k=\{x_k^{LM}, \overrightarrow{h}_{k,j}^{LM}, \overleftarrow{h}_{k,j}^{LM}|j=1,...,L\}=\{h_{k,j}^{LM}|j=0,...,L\}
 $$
+
+
 $x_k^{LM}$: word vector; $\overrightarrow{h}_{k,j}^{LM}$: forward LSTM hidden state; $\overleftarrow{h}_{k,j}^{LM}$: backward LSTM hidden state;
 
 
@@ -65,9 +71,13 @@ $x_k^{LM}$: word vector; $\overrightarrow{h}_{k,j}^{LM}$: forward LSTM hidden st
 ## ELMo Fine-tuning
 
 After pre-training, we can get the ELMo vector as follows:
+
+
 $$
 ELMo_k^{task}=E(R_k;\Theta^{task})=\gamma^{task} \sum_{j=0}^L s_j^{task} h_{k,j}^{LM}
 $$
+
+
 $h_{k,j}^{LM}$: hidden states of layer $j$;  $s_j^{task}$: softmax normalized weights (model parameters, a $L$-dimension vector); $\gamma^{task}$: scalar parameter (hyper-parameter). The sentence "it can also help to apply layer normalization to each biLM layer before weighting". Err... In my opinion, the sentence can be rewritten to "Applying layer normalization to each biLM layer before weighting is helpful". Emmm... Layer normalization is helpful. First, adopt layer normalization on $h_{k,j}^{LM}$ , then weighting $s_j^{task} h_{k,j}^{LM}$ . Emmm... The authors also mention that "Considering that the activations of each biLM layer have a different distribution", so they should express that layer normalization is helpful to obtain the same distribution.
 
 
