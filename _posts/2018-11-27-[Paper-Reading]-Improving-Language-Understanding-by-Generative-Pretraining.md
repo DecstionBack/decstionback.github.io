@@ -31,9 +31,12 @@ Output: A language model trained on the corpora
 #### Traing Objective
 
 Given an unsupervised corpus of tokens $\mathcal{U}={u_1, ..., u_k}$, we use a standard language modeling objective to maximize the following likelihood:
+
+
 $$
 L_1(\mathcal{U})=\sum_i \log P(u_i|u_{i-k}, ..., u_{i-1}; \Theta)
 $$
+
 
 #### Training Methods
 
@@ -67,6 +70,8 @@ The inputs are passed through the pre-trained model to obtain the final transfor
 $$
 P(y|x^1, ..., x^m)={\rm softmax} (h_l^m W_y)
 $$
+
+
 During fine-tuning process, the objective is :
 
 
