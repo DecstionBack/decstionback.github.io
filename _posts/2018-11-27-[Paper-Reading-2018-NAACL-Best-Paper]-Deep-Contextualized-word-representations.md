@@ -64,7 +64,7 @@ R_k=\{x_k^{LM}, \overrightarrow{h}_{k,j}^{LM}, \overleftarrow{h}_{k,j}^{LM}|j=1,
 $$
 
 
-$x_k^{LM}​$: word vector;  
+$x_k^{LM}$: word vector;  
 
 $\overrightarrow{h}_{k,j}^{LM}$ : forward LSTM hidden state;
 
