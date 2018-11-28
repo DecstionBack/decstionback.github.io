@@ -1,4 +1,3 @@
 git add $1 
-
-git commit -m $2
+git commit -m 'Initial Commit'
 git push origin master
